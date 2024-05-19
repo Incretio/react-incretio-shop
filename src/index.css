@@ -48,7 +48,7 @@ nav {
     overflow: hidden;
 }
 
-.cart {
+.cart-icon {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
@@ -58,9 +58,25 @@ nav {
 }
 
 @media (min-width: 767px) {
-    .cart {
+    .cart-icon {
         top: 5rem;
         bottom:unset;
+    }
+}
+
+.cart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60rem;
+    max-width: 95%;
+}
+
+@media (min-width: 1024px) {
+    .cart {
+        /*top: 5rem;*/
+        /*bottom:unset;*/
     }
 }
 
