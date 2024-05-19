@@ -1,0 +1,2 @@
+GET https://fortniteapi.io/v2/shop?lang=ru&limit=10&fields=mainId;displayName;price
+Authorization: f54f91e9-6186b005-158bded5-6ae3ca2f
