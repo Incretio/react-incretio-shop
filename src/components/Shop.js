@@ -75,7 +75,7 @@ function Shop() {
 
     return (
         <div className="container content">
-            <CartIcon quantity={getCardQuantity()} handleCartShow={handleCartShow}/>
+            {!isCartShow && <CartIcon quantity={getCardQuantity()} handleCartShow={handleCartShow}/>}
             {loading ?
                 <Preloader/>
                 :

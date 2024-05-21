@@ -7,11 +7,13 @@ function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCa
 
     return (
         <div className="cart">
-            <ul className="list-group overflow-auto" style={{maxHeight: '740px'}}>
+            <ul className="list-group">
                 <li className="list-group-item list-group-item-secondary fw-bold">
                     Cart
                     <GrClose className="card-icon-close" role="button" onClick={handleCartShow}/>
                 </li>
+            </ul>
+            <ul className="list-group overflow-auto" style={{maxHeight: '600px'}}>
                 {order.length ?
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                         <div className="row" style={{width: '-webkit-fill-available'}}>
@@ -33,6 +35,8 @@ function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCa
                               changeQuantity={changeQuantity}
                     />
                 ))}
+            </ul>
+            <ul className="list-group">
                 <li className="list-group-item list-group-item-secondary">
                     <span className="fw-bold">Total:</span> ${totalSum.toFixed(2)}
                 </li>
