@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Items from "../Items";
 import {SHOP_API_URL} from "../config"
 import Preloader from "./Preloader";
 import CartIcon from "./CartIcon";
 import Cart from "./Cart";
+import Toast from "./Toast";
 
 function Shop() {
 
@@ -11,6 +12,8 @@ function Shop() {
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState([]); // [{item: {}, quantity: 0},]
     const [isCartShow, setCartShow] = useState(false);
+    const [lastAddedItemDate, setLastAddedItemDate] = useState(null);
+    const [lastAddedItem, setLastAddedItem] = useState('');
 
     useEffect(() => {
         setLoading(true);
@@ -30,8 +33,13 @@ function Shop() {
 
     const addToCart = (item) => {
         const itemFromCart = order.find(it => it.item.id === item.id);
-        const quantity = itemFromCart ? itemFromCart.quantity + 1 : 1;
-        setOrder(order.filter(it => it.item.id !== item.id).concat({item, quantity}));
+        if (itemFromCart) {
+            changeQuantity(itemFromCart.item.id, itemFromCart.quantity + 1);
+        } else {
+            setOrder(order.concat({item, quantity: 1}));
+        }
+        setLastAddedItem(item.title);
+        setLastAddedItemDate(new Date());
     }
 
     const getCardQuantity = () => {
@@ -48,15 +56,37 @@ function Shop() {
         setOrder(order.filter(it => it.item.id !== itemId));
     }
 
+    const changeQuantity = (itemId, quantity) => {
+        quantity = Math.min(quantity, 9)
+        quantity = Math.max(quantity, 1)
+        setOrder(order.map(it => it.item.id === itemId ? {item: it.item, quantity} : it));
+    }
+
+    const payCart = () => {
+        alert("Payed. Thank you!");
+        setOrder([]);
+        setCartShow(false);
+    }
+
+    const clearLastAddedItem = () => {
+        setLastAddedItem('');
+        setLastAddedItemDate(null);
+    }
+
     return (
         <div className="container content">
             <CartIcon quantity={getCardQuantity()} handleCartShow={handleCartShow}/>
             {loading ?
                 <Preloader/>
                 :
-                <Items items={items}  addToCart={addToCart}/>
+                <Items items={items} addToCart={addToCart}/>
             }
-            {isCartShow && <Cart order={order} removeFromCart={removeFromCart}/>}
+            {isCartShow && <Cart order={order}
+                                 removeFromCart={removeFromCart}
+                                 handleCartShow={handleCartShow}
+                                 changeQuantity={changeQuantity}
+                                 payCart={payCart}/>}
+            {lastAddedItem && <Toast name={lastAddedItem} createdDate={lastAddedItemDate} closeToast={clearLastAddedItem}/>}
         </div>
     );
 }

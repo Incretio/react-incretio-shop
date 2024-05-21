@@ -60,8 +60,12 @@ nav {
 @media (min-width: 767px) {
     .cart-icon {
         top: 5rem;
-        bottom:unset;
+        bottom: unset;
     }
+}
+
+.cart-quantity {
+    vertical-align: middle;
 }
 
 .cart {
@@ -71,12 +75,47 @@ nav {
     transform: translate(-50%, -50%);
     width: 60rem;
     max-width: 95%;
+    animation: show 200ms ease-in-out;
 }
 
-@media (min-width: 1024px) {
-    .cart {
-        /*top: 5rem;*/
-        /*bottom:unset;*/
+.card-icon-close {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes show {
+    from {
+        top: 70%;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
     }
 }
 
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.toast-container {
+    animation: fade-in 100ms ease-in-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
