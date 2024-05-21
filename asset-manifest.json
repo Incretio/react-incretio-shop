@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-incretio-shop/static/css/main.b583e5c4.css",
+    "main.js": "/react-incretio-shop/static/js/main.2f04ee98.js",
+    "index.html": "/react-incretio-shop/index.html",
+    "main.b583e5c4.css.map": "/react-incretio-shop/static/css/main.b583e5c4.css.map",
+    "main.2f04ee98.js.map": "/react-incretio-shop/static/js/main.2f04ee98.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b583e5c4.css",
+    "static/js/main.2f04ee98.js"
+  ]
+}
