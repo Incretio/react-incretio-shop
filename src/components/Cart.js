@@ -40,7 +40,7 @@ function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCa
                 <li className="list-group-item list-group-item-secondary">
                     <span className="fw-bold">Total:</span> ${totalSum.toFixed(2)}
                 </li>
-                <button type="button" className="btn btn-success" onClick={payCart}>Pay Cart</button>
+                {order.length > 0 && <button type="button" className="btn btn-success" onClick={payCart}>Pay Cart</button>}
             </ul>
         </div>
     );
