@@ -1,7 +1,12 @@
-import { MdDelete } from "react-icons/md";
-import { FaRegSquareMinus, FaRegSquarePlus } from "react-icons/fa6";
+import {useContext} from "react";
+import {MdDelete} from "react-icons/md";
+import {FaRegSquareMinus, FaRegSquarePlus} from "react-icons/fa6";
+import {ShopContext} from "../context";
 
-function CartItem({id, title, price, quantity, removeFromCart, changeQuantity}) {
+function CartItem({id, title, price, quantity}) {
+
+    const {removeFromCart, changeQuantity} = useContext(ShopContext);
+
     return (
         <li className="list-group-item d-flex justify-content-between align-items-center">
             <div className="row" style={{width: '-webkit-fill-available'}}>

@@ -1,7 +1,12 @@
+import {useContext} from "react";
 import {BsCart4} from "react-icons/bs";
+import {ShopContext} from "../context";
 
-function CartIcon({quantity, handleCartShow}) {
+function CartIcon() {
 
+    const {getCardQuantity, toggleCart} = useContext(ShopContext);
+
+    const quantity = getCardQuantity();
     if (!quantity) {
         return null;
     }
@@ -9,7 +14,7 @@ function CartIcon({quantity, handleCartShow}) {
     return (
         <div
             className="cart-icon bg-warning text-dark"
-            onClick={handleCartShow}
+            onClick={toggleCart}
         >
             <BsCart4/>
             <span className="cart-quantity">{quantity}</span>

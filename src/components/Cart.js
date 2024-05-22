@@ -1,7 +1,11 @@
+import {useContext} from "react";
 import CartItem from "./CartItem";
 import {GrClose} from "react-icons/gr";
+import {ShopContext} from "../context";
 
-function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCart}) {
+function Cart({payCart}) {
+
+    const {order = [], toggleCart} = useContext(ShopContext);
 
     const totalSum = order.map(it => it.item.price * it.quantity).reduce((prevValue, currentValue) => prevValue + currentValue, 0);
 
@@ -10,7 +14,7 @@ function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCa
             <ul className="list-group">
                 <li className="list-group-item list-group-item-secondary fw-bold">
                     Cart
-                    <GrClose className="card-icon-close" role="button" onClick={handleCartShow}/>
+                    <GrClose className="card-icon-close" role="button" onClick={toggleCart}/>
                 </li>
             </ul>
             <ul className="list-group overflow-auto" style={{maxHeight: '600px'}}>
@@ -31,8 +35,6 @@ function Cart({order = [], removeFromCart, handleCartShow, changeQuantity, payCa
                     <CartItem key={it.item.id}
                               {...it.item}
                               quantity={it.quantity}
-                              removeFromCart={removeFromCart}
-                              changeQuantity={changeQuantity}
                     />
                 ))}
             </ul>

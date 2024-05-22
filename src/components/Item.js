@@ -1,4 +1,10 @@
-function Item({id, price, image, title, description, addToCart}) {
+import {useContext} from "react";
+import {ShopContext} from "../context";
+
+function Item({id, price, image, title, description}) {
+
+    const {addToCart} = useContext(ShopContext);
+
     return (
         <div className="card">
             <div className="item-image">

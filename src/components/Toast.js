@@ -1,11 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useContext} from "react";
+import {ShopContext} from "../context";
 
-function Toast({name, createdDate, closeToast}) {
+function Toast() {
 
-    useEffect(() => {
-       const timerId = setTimeout(closeToast, 3000);
-       return () => clearTimeout(timerId);
-    }, [name, createdDate]);
+    const {lastAddedItem, closeToast} = useContext(ShopContext);
 
     return (
         <div className="toast-container position-fixed bottom-0 end-0 p-3">
@@ -15,7 +13,7 @@ function Toast({name, createdDate, closeToast}) {
                     <button type="button" className="btn-close" aria-label="Close" onClick={closeToast}></button>
                 </div>
                 <div className="toast-body">
-                    {name}
+                    {lastAddedItem}
                 </div>
             </div>
         </div>
